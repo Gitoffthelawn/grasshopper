@@ -67,7 +67,7 @@ App.setup_tabs = () => {
 
     App.debug(`Tab Removed: ID: ${id}`, App.debug_tabs)
 
-    if ((info.windowId === App.window_id)) {
+    if (info.windowId === App.window_id) {
       App.remove_closed_tab(id)
       App.check_playing()
     }
