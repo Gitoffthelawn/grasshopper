@@ -225,7 +225,7 @@ App.check_icons = (item) => {
     App.do_icon_check(icon, item)
   }
 
-  if (item.mode !== `tabs`) {
+  if (!App.is_tabs_mode(item.mode)) {
     return
   }
 

@@ -4620,7 +4620,7 @@ App.setup_commands = () => {
       name: `Filter Playing`,
       short_name: `Playing`,
       cmd: `filter_playing_tabs`,
-      modes: [`tabs`],
+      modes: [`tabs`, `global`],
       icon: playing_icon,
       filter_mode: true,
       action: (args) => {

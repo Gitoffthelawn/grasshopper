@@ -15,6 +15,7 @@ App.build_tab_filters = () => {
   ]
 
   App.global_filter_modes = [
+    {cmd: `filter_playing_tabs`},
     {cmd: `filter_duplicate_tabs`},
   ]
 }
