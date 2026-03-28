@@ -4586,7 +4586,7 @@ App.setup_commands = () => {
       name: `Filter Pins`,
       short_name: `Pins`,
       cmd: `filter_pinned_tabs`,
-      modes: [`tabs`],
+      modes: [`tabs`, `global`],
       icon: pin_icon,
       filter_mode: true,
       action: (args) => {
@@ -4608,7 +4608,7 @@ App.setup_commands = () => {
       name: `Filter Normal`,
       short_name: `Normal`,
       cmd: `filter_normal_tabs`,
-      modes: [`tabs`],
+      modes: [`tabs`, `global`],
       icon: normal_icon,
       filter_mode: true,
       action: (args) => {
@@ -4672,7 +4672,7 @@ App.setup_commands = () => {
       name: `Filter Loaded`,
       short_name: `Loaded`,
       cmd: `filter_loaded_tabs`,
-      modes: [`tabs`],
+      modes: [`tabs`, `global`],
       icon: loaded_icon,
       filter_mode: true,
       action: (args) => {
@@ -4684,7 +4684,7 @@ App.setup_commands = () => {
       name: `Filter Unloaded`,
       short_name: `Unloaded`,
       cmd: `filter_unloaded_tabs`,
-      modes: [`tabs`],
+      modes: [`tabs`, `global`],
       icon: unloaded_icon,
       filter_mode: true,
       action: (args) => {
