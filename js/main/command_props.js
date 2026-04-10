@@ -104,6 +104,7 @@ App.setup_commands = () => {
   let gematria_icon = App.gematria_icon
   let color_picker_icon = App.color_picker_icon
   let donate_icon = App.donate_icon
+  let pdf_icon = App.pdf_icon
 
   let tbmodes = []
 
@@ -455,6 +456,7 @@ App.setup_commands = () => {
     let cap = App.capitalize(media)
     let icon = App.get_setting(`${media}_icon`)
     let name = `Filter ${cap}`.trim()
+    let cap_media = App.capitalize(media)
 
     media_filters.push({
       name,
@@ -466,7 +468,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Filter Media (${media})`,
+      info: `Filter Media (${cap_media})`,
     })
   }
 
@@ -3239,6 +3241,17 @@ App.setup_commands = () => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
       info: `Filter groups of tabs that share the same domain`,
+    },
+    {
+      name: `Filter PDF`,
+      short_name: `PDF`,
+      cmd: `filter_pdf_tabs`,
+      icon: pdf_icon,
+      modes: [`items`],
+      action: (args) => {
+        App.filter_cmd(args.mode, args.self.cmd, args.from)
+      },
+      info: `Filter tabs that are PDF documents or similar`,
     },
     {
       name: `Show Clusters`,

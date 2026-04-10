@@ -1,5 +1,5 @@
 App.show_photo = async () => {
-  let image = await App.get_photo()
+  let image = await App.get_photo() || `img/bfg.jpg`
 
   App.show_textarea({
     title: `Photo`,
