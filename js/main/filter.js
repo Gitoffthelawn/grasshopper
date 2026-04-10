@@ -9,10 +9,10 @@ App.build_tab_filters = () => {
     {cmd: `filter_zone_tabs`},
     {cmd: `filter_duplicate_tabs`},
     {cmd: `filter_obfuscated_tabs`},
-    {cmd: `filter_idle_tabs`},
-    {cmd: `filter_pdf_tabs`},
+    {cmd: `filter_document_tabs`},
     {cmd: `filter_all_parent_tabs`},
     {cmd: `filter_all_node_tabs`},
+    {cmd: `filter_idle_tabs`},
   ]
 
   App.global_filter_modes = [
@@ -22,6 +22,7 @@ App.build_tab_filters = () => {
     {cmd: `filter_loaded_tabs`},
     {cmd: `filter_unloaded_tabs`},
     {cmd: `filter_duplicate_tabs`},
+    {cmd: `filter_document_tabs`},
   ]
 }
 
@@ -860,8 +861,8 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `filter_obfuscated_tabs`) {
       match = App.get_obfuscated(args.item)
     }
-    else if (args.filter_mode === `filter_pdf_tabs`) {
-      match = App.is_pdf_tab(args.item)
+    else if (args.filter_mode === `filter_document_tabs`) {
+      match = args.item.document
     }
     else if (args.filter_mode === `filter_idle_tabs`) {
       match = App.tab_is_idle(args.item)

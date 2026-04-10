@@ -117,6 +117,7 @@ App.process_info = (args = {}) => {
   let image = App.is_image(url)
   let video = App.is_video(url)
   let audio = App.is_audio(url)
+  let is_document = App.is_document(url)
 
   let item = {
     title,
@@ -135,6 +136,7 @@ App.process_info = (args = {}) => {
     special,
     is_item: true,
     header: false,
+    document: is_document,
   }
 
   if (App.is_tabs_mode(args.mode)) {

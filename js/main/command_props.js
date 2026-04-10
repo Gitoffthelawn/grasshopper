@@ -104,7 +104,7 @@ App.setup_commands = () => {
   let gematria_icon = App.gematria_icon
   let color_picker_icon = App.color_picker_icon
   let donate_icon = App.donate_icon
-  let pdf_icon = App.pdf_icon
+  let document_icon = App.document_icon
 
   let tbmodes = []
 
@@ -3243,15 +3243,15 @@ App.setup_commands = () => {
       info: `Filter groups of tabs that share the same domain`,
     },
     {
-      name: `Filter PDF`,
-      short_name: `PDF`,
-      cmd: `filter_pdf_tabs`,
-      icon: pdf_icon,
+      name: `Filter Documents`,
+      short_name: `Documents`,
+      cmd: `filter_document_tabs`,
+      icon: document_icon,
       modes: [`items`],
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
-      info: `Filter tabs that are PDF documents or similar`,
+      info: `Filter tabs that are documents`,
     },
     {
       name: `Show Clusters`,

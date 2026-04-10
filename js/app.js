@@ -362,7 +362,7 @@ App.word_counter_icon = `🥸`
 App.title_icon = `✏️`
 App.donate_icon = `🎁`
 App.group_icon = `🗂️`
-App.pdf_icon = `📖`
+App.document_icon = `📖`
 
 App.filter_bottom_icon = `v`
 App.filter_bottom_title = `Go to the bottom`

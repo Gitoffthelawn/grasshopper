@@ -1853,28 +1853,3 @@ App.focus_global_tab = async (item) => {
   await App.browser().windows.update(item.window_id, {focused: true})
   await App.browser().tabs.update(item.id, {active: true})
 }
-
-App.is_pdf_tab = (item) => {
-  let exts = [`pdf`, `epub`, `mobi`, `azw3`, `azw4`]
-  let url = item.url.toLowerCase()
-
-  function check(what) {
-    if (url.endsWith(`.${what}`)) {
-      return true
-    }
-
-    if (url.includes(`.${what}?`)) {
-      return true
-    }
-
-    return false
-  }
-
-  for (let ext of exts) {
-    if (check(ext)) {
-      return true
-    }
-  }
-
-  return false
-}
