@@ -1841,6 +1841,7 @@ App.create_filter_button = (mode) => {
   fmodes.push({cmd: `filter_http_tabs`})
   fmodes.push({cmd: `filter_file_tabs`})
   fmodes.push({cmd: `filter_tab_clusters`})
+  fmodes.push({cmd: `filter_document_tabs`})
 
   if (mode === `tabs`) {
     fmodes.push(separator())
