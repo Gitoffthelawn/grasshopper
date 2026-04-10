@@ -1858,7 +1858,6 @@ App.is_pdf_tab = (item) => {
   let exts = [`pdf`, `epub`, `mobi`, `azw3`, `azw4`]
   let url = item.url.toLowerCase()
 
-
   function check(what) {
     if (url.endsWith(`.${what}`)) {
       return true
