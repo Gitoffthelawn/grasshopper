@@ -4,6 +4,7 @@ pkgs.mkShell {
   packages = [
     pkgs.nodejs
     pkgs.ruby
+    pkgs.zip
   ];
 
   shellHook = ''
