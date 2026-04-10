@@ -293,15 +293,6 @@ App.similarity_threshold = (text) => {
 }
 
 App.is_document = (url) => {
-  let exts = [
-    `pdf`, `djvu`, `xps`,
-    `txt`, `md`, `csv`,
-    `epub`, `mobi`, `azw3`, `azw4`, `fb2`, `cbz`, `cbr`,
-    `doc`, `docx`, `rtf`, `odt`, `pages`,
-    `xls`, `xlsx`, `ods`, `numbers`,
-    `ppt`, `pptx`, `odp`, `key`
-  ]
-
   url = url.toLowerCase()
 
   function check(what) {
@@ -316,7 +307,7 @@ App.is_document = (url) => {
     return false
   }
 
-  for (let ext of exts) {
+  for (let ext of App.document_exts) {
     if (check(ext)) {
       return true
     }
