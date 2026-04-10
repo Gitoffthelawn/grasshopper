@@ -1,10 +1,15 @@
 {pkgs ? import <nixpkgs> {}}:
 
+let
+  rubyEnv = pkgs.ruby.withPackages (ps: [
+    ps.git
+  ]);
+in
 pkgs.mkShell {
   packages = [
     pkgs.nodejs
-    pkgs.ruby
     pkgs.zip
+    rubyEnv
   ];
 
   shellHook = ''
