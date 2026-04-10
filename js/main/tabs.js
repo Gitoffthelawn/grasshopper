@@ -1862,9 +1862,12 @@ App.is_pdf_tab = (item) => {
     if (url.endsWith(`.${what}`)) {
       return true
     }
-    else if (url.includes(`.${what}?`)) {
+
+    if (url.includes(`.${what}?`)) {
       return true
     }
+
+    return false
   }
 
   for (let ext of exts) {
