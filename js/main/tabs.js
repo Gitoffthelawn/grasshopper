@@ -858,12 +858,15 @@ App.on_tab_activated = async (info) => {
   }
 
   let new_active = await App.refresh_tab({id: info.tabId, select: true})
-  new_active.activated = true
-  new_active.unread = false
 
-  if (new_active.idle) {
-    new_active.idle = false
-    App.update_item({mode: `tabs`, id: new_active.id, info: new_active})
+  if (new_active) {
+    new_active.activated = true
+    new_active.unread = false
+
+    if (new_active.idle) {
+      new_active.idle = false
+      App.update_item({mode: `tabs`, id: new_active.id, info: new_active})
+    }
   }
 
   for (let item of old_active) {
