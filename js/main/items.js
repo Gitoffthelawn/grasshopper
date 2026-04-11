@@ -372,6 +372,7 @@ App.refresh_item_element = (item) => {
 App.create_empty_item_element = (item) => {
   item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item element ${item.mode}_element empty_element`)
   item.element.dataset.id = item.id
+  item.element.dataset.mode = item.mode
   item.element_ready = false
   App.item_observer.observe(item.element)
 }
@@ -1595,12 +1596,13 @@ App.toggle_auto_scroll = () => {
   App.toggle_message(`Auto Scroll`, `auto_scroll`)
 }
 
-App.start_item_observer = (item) => {
+App.start_item_observer = () => {
   App.item_observer = new IntersectionObserver((entries) => {
     for (let entry of entries) {
       if (entry.isIntersecting) {
         let id = entry.target.dataset.id
-        let item = App.get_item_by_id(App.active_mode, id)
+        let mode = entry.target.dataset.mode
+        let item = App.get_item_by_id(mode, id)
 
         if (item) {
           App.create_item_element(item)
