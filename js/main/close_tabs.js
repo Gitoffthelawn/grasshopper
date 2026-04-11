@@ -61,9 +61,7 @@ App.close_tabs = (args = {}) => {
           let succ = App.get_tab_succ(items)
 
           if (succ) {
-            for (let it of items) {
-              await App.update_tab(it.id, {openerTabId: succ.id})
-            }
+            await App.update_tab(succ.id, {active: true})
           }
           else {
             await App.blank_tab()
@@ -99,7 +97,7 @@ App.close_active_tab = () => {
   let active = App.get_active_tab_item()
 
   if (active) {
-    App.close_tab_or_tabs(active.id)
+    App.close_tabs({selection: [active], force: true})
   }
 }
 
