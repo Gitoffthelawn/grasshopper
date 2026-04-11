@@ -7,38 +7,6 @@ App.setup_bookmarks = () => {
     return
   }
 
-  App.browser().bookmarks.onCreated.addListener((id, info) => {
-    App.debug(`Bookmark Created: ID: ${id}`)
-
-    if (App.active_mode === `bookmarks`) {
-      App.insert_item(`bookmarks`, info)
-    }
-  })
-
-  App.browser().bookmarks.onRemoved.addListener((id, info) => {
-    App.debug(`Bookmark Removed: ID: ${id}`)
-
-    if (App.active_mode === `bookmarks`) {
-      let item = App.get_item_by_id(`bookmarks`, id)
-
-      if (item) {
-        App.remove_item(item)
-      }
-    }
-  })
-
-  App.browser().bookmarks.onChanged.addListener((id, info) => {
-    App.debug(`Bookmark Changed: ID: ${id}`)
-
-    if (App.active_mode === `bookmarks`) {
-      let item = App.get_item_by_id(`bookmarks`, id)
-
-      if (item) {
-        App.update_item({mode: `bookmarks`, id: item.id, info})
-      }
-    }
-  })
-
   App.setup_bookmarks_ready = true
 }
 
@@ -520,7 +488,13 @@ App.init_bookmarks = async () => {
     return
   }
 
-  await App.browser().runtime.sendMessage({action: `send_bookmarks`})
+  let data = await App.browser().runtime.sendMessage({action: `send_bookmarks`})
+
+  if (data && data.items) {
+    App.bookmarks_received = true
+    App.bookmark_items_cache = data.items
+    App.bookmark_folders_cache = data.folders
+  }
 }
 
 App.reset_bookmarks = () => {

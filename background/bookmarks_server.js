@@ -17,7 +17,10 @@ let bookmark_debouncer
 App.browser().runtime.onMessage.addListener((request, sender, respond) => {
   if (request.action === `send_bookmarks`) {
     if (bookmarks_active) {
-      send_bookmarks()
+      respond({
+        items: bookmark_items,
+        folders: bookmark_folders
+      })
     }
   }
 })
