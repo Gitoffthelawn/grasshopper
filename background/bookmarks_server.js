@@ -19,7 +19,7 @@ App.browser().runtime.onMessage.addListener((request, sender, respond) => {
     if (bookmarks_active) {
       respond({
         items: bookmark_items,
-        folders: bookmark_folders
+        folders: bookmark_folders,
       })
     }
   }
