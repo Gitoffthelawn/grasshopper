@@ -676,11 +676,3 @@ App.footer_down_ctrl_click_cmd = `jump_tabs_all_down`
 App.footer_down_ctrl_shift_click_cmd = `move_to_zone_down`
 
 App.date_format_info = `To use text surround it between [ and ], like -> [Time]: HH:MM:ss`
-
-App.document_exts = [
-  `pdf`, `djvu`, `xps`, `txt`, `md`,
-  `csv`, `epub`, `mobi`, `azw3`, `azw4`,
-  `fb2`, `cbz`, `cbr`, `doc`, `docx`,
-  `rtf`, `odt`, `pages`, `xls`, `xlsx`,
-  `ods`, `numbers`, `ppt`, `pptx`, `odp`, `key`,
-]

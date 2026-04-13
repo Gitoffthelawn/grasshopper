@@ -5752,6 +5752,14 @@ App.build_settings = () => {
   category = `more`
 
   props = {
+    documents: {
+      name: `Documents`,
+      type: `list`,
+      value: App.get_document_values(),
+      actions: [],
+      info: `List of extensions to consider documents`,
+      version: 1,
+    },
     max_recent_tabs: {
       name: `Max Recent Tabs`,
       type: `number`,

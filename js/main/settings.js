@@ -1689,6 +1689,32 @@ App.setup_settings_addlist = () => {
       },
       title: props.name,
     })})
+
+  key = `documents`
+  id = `settings_${key}`
+  props = App.setting_props[key]
+
+  App.create_popup({...popobj, id: `addlist_${id}`,
+    element: Addlist.register({...regobj, id,
+      keys: [`ext`],
+      pk: `ext`,
+      widgets: {
+        ext: `text`,
+      },
+      labels: {
+        ext: `Extension`,
+      },
+      list_text: (item) => {
+        return item.ext
+      },
+      required: {
+        ext: true,
+      },
+      tooltips: {
+        ext: `Extension of the document`,
+      },
+      title: props.ext,
+    })})
 }
 
 App.settings_build_category = (key) => {

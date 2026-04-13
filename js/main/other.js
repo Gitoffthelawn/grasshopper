@@ -307,11 +307,36 @@ App.is_document = (url) => {
     return false
   }
 
-  for (let ext of App.document_exts) {
+  let exts = App.get_document_exts()
+
+  for (let ext of exts) {
     if (check(ext)) {
       return true
     }
   }
 
   return false
+}
+
+App.get_document_values = () => {
+  let exts = [
+    `pdf`, `djvu`, `xps`, `txt`, `md`,
+    `csv`, `epub`, `mobi`, `azw3`, `azw4`,
+    `fb2`, `cbz`, `cbr`, `doc`, `docx`,
+    `rtf`, `odt`, `pages`, `xls`, `xlsx`,
+    `ods`, `numbers`, `ppt`, `pptx`, `odp`, `key`,
+  ]
+
+  let items = []
+
+  for (let ext of exts) {
+    items.push({ext})
+  }
+
+  return items
+}
+
+App.get_document_exts = () => {
+  let items = App.get_setting(`documents`)
+  return items.map(x => x.ext)
 }
