@@ -5860,7 +5860,7 @@ App.build_settings = () => {
     min_cluster_size: {
       name: `Min Cluster Size`,
       type: `number`,
-      value: 5,
+      value: 3,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
