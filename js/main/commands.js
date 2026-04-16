@@ -765,7 +765,7 @@ App.custom_menu_items = (args = {}) => {
 
   return App.show_cmds_menu({
     cmds,
-    from: args.name,
+    from: args.from || args.name,
     item: args.item,
     check: args.check,
     short: args.short,
