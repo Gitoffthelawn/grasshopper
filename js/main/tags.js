@@ -410,7 +410,7 @@ App.select_tag_pick = (item, e) => {
   App.show_context({items, e})
 }
 
-App.get_tag_items = (mode, action = `filter`) => {
+App.get_tag_items = (mode, action = `filter`, from = `normal`) => {
   function fav_sort(a, b) {
     let ai = App.tag_history.indexOf(a)
     let bi = App.tag_history.indexOf(b)
@@ -446,7 +446,7 @@ App.get_tag_items = (mode, action = `filter`) => {
       text: `All`,
       action: () => {
         if (action === `filter`) {
-          App.filter_tag({mode, tag: `all`})
+          App.filter_tag({mode, tag: `all`, from})
         }
         else if (action === `show`) {
           App.show_tab_list(`tag_allthetags`)
@@ -466,7 +466,7 @@ App.get_tag_items = (mode, action = `filter`) => {
         text: tag,
         action: (e) => {
           if (action === `filter`) {
-            App.filter_tag({mode, tag})
+            App.filter_tag({mode, tag, from})
           }
           else if (action === `show`) {
             App.show_tab_list(`tag_${tag}`, e)
@@ -500,8 +500,8 @@ App.tagged = (item) => {
   return Boolean(tags.length)
 }
 
-App.show_filter_tag_menu = (mode, e, show = false) => {
-  let items = App.get_tag_items(mode)
+App.show_filter_tag_menu = (mode, e, show = false, from = `normal`) => {
+  let items = App.get_tag_items(mode, `filter`, from)
   let title_icon = App.get_setting(`tags_icon`)
   App.show_context({items, e, title: `Tags`, title_icon})
 }

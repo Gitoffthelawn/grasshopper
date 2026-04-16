@@ -1655,6 +1655,11 @@ App.complex_filter = (args = {}) => {
   }
 
   App.def_args(def_args, args)
+
+  if (App.refine_string) {
+    args.from === App.refine_string
+  }
+
   let name = `${args.short}-${args.value}`
 
   if (args.toggle) {
@@ -1714,24 +1719,6 @@ App.filter_container = (args = {}) => {
     text: args.container,
     short: `container`,
     full: `Containers`,
-    toggle: args.toggle,
-    from: args.from,
-  })
-}
-
-App.filter_icon = (args = {}) => {
-  let def_args = {
-    toggle: false,
-  }
-
-  App.def_args(def_args, args)
-
-  App.complex_filter({
-    mode: args.mode,
-    value: args.icon,
-    text: args.icon,
-    short: `icon`,
-    full: `Icons`,
     toggle: args.toggle,
     from: args.from,
   })

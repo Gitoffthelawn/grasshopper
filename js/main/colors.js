@@ -784,10 +784,6 @@ App.filter_color = (args = {}) => {
     text = color.name
   }
 
-  if (App.refine_string) {
-    args.from === App.refine_string
-  }
-
   App.complex_filter({
     value,
     text,

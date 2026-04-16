@@ -562,7 +562,7 @@ App.fetch_favicon_url = (item) => {
   return `https://www.google.com/s2/favicons?sz=64&domain=${item.hostname}`
 }
 
-App.get_icon_items = (mode, action = `filter`) => {
+App.get_icon_items = (mode, action = `filter`, from = `normal`) => {
   function icon_sort(a, b) {
     let ai = App.icon_history.indexOf(a)
     let bi = App.icon_history.indexOf(b)
@@ -598,7 +598,7 @@ App.get_icon_items = (mode, action = `filter`) => {
       text: `All`,
       action: (e) => {
         if (action === `filter`) {
-          App.filter_icon({mode, icon: `all`})
+          App.filter_icon({mode, icon: `all`, from})
         }
         else if (action === `show`) {
           App.show_tab_list(`icon_alltheicons`, e)
@@ -617,7 +617,7 @@ App.get_icon_items = (mode, action = `filter`) => {
         text: icon,
         action: (e) => {
           if (action === `filter`) {
-            App.filter_icon({mode, icon})
+            App.filter_icon({mode, icon, from})
           }
           else if (action === `show`) {
             App.show_tab_list(`icon_${icon}`, e)
@@ -726,8 +726,8 @@ App.change_icon = (item) => {
   App.edit_prompt({what: `icon`, item})
 }
 
-App.show_filter_icon_menu = (mode, e) => {
-  let items = App.get_icon_items(mode)
+App.show_filter_icon_menu = (mode, e, from) => {
+  let items = App.get_icon_items(mode, `filter`, from)
   let title_icon = App.bot_icon
   App.show_context({items, e, title: `Icons`, title_icon})
 }
@@ -1307,4 +1307,22 @@ App.do_select_same_icon = (icon) => {
 
 App.select_all_icons = () => {
   App.do_select_same_icon(``)
+}
+
+App.filter_icon = (args = {}) => {
+  let def_args = {
+    toggle: false,
+  }
+
+  App.def_args(def_args, args)
+
+  App.complex_filter({
+    mode: args.mode,
+    value: args.icon,
+    text: args.icon,
+    short: `icon`,
+    full: `Icons`,
+    toggle: args.toggle,
+    from: args.from,
+  })
 }
