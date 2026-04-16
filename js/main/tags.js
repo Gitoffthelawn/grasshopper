@@ -500,7 +500,7 @@ App.tagged = (item) => {
   return Boolean(tags.length)
 }
 
-App.show_filter_tag_menu = (mode, e, show = false, from = `normal`) => {
+App.show_filter_tag_menu = (mode, e, from = `normal`) => {
   let items = App.get_tag_items(mode, `filter`, from)
   let title_icon = App.get_setting(`tags_icon`)
   App.show_context({items, e, title: `Tags`, title_icon})
@@ -571,4 +571,22 @@ App.select_tag = (tag) => {
 
 App.select_all_tags = () => {
   App.select_tag(``)
+}
+
+App.filter_tag = (args = {}) => {
+  let def_args = {
+    toggle: false,
+  }
+
+  App.def_args(def_args, args)
+
+  App.complex_filter({
+    mode: args.mode,
+    value: args.tag,
+    text: args.tag,
+    short: `tag`,
+    full: `Tags`,
+    toggle: args.toggle,
+    from: args.from,
+  })
 }

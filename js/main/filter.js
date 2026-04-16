@@ -1688,24 +1688,6 @@ App.complex_filter = (args = {}) => {
   })
 }
 
-App.filter_tag = (args = {}) => {
-  let def_args = {
-    toggle: false,
-  }
-
-  App.def_args(def_args, args)
-
-  App.complex_filter({
-    mode: args.mode,
-    value: args.tag,
-    text: args.tag,
-    short: `tag`,
-    full: `Tags`,
-    toggle: args.toggle,
-    from: args.from,
-  })
-}
-
 App.filter_container = (args = {}) => {
   let def_args = {
     toggle: false,
