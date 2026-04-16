@@ -338,7 +338,7 @@ App.setup_commands = () => {
     modes: [`items`],
     icon: colors_icon,
     action: (args) => {
-      App.show_filter_color_menu(args.mode, args.e)
+      App.show_filter_color_menu(args.mode, args.e, args.from)
     },
     info: `Show the Filter Color Menu`,
   })

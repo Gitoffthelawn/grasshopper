@@ -2009,10 +2009,13 @@ App.show_filter_menu = (mode) => {
   let compact = App.get_setting(`compact_filter_menu`)
 
   App.show_context({
+    compact,
     element: btn,
     items: App.filter_menus[mode],
     margin: btn.clientHeight,
-    compact,
+    after_hide: () => {
+      App.refining_filter = false
+    },
   })
 }
 
@@ -2275,6 +2278,7 @@ App.get_refine_items = () => {
 
 App.show_refine_filters = (e) => {
   let items = App.get_refine_items()
+  App.refining_filter = true
 
   App.show_context({
     e,

@@ -343,7 +343,7 @@ App.show_color_menu = (item, e, show_title = true) => {
   App.show_context({items, e, title, title_icon, element, compact})
 }
 
-App.get_color_items = (mode, action = `filter`) => {
+App.get_color_items = (mode, action = `filter`, from = `normal`) => {
   let items = []
   let count = App.get_active_colors(mode)
 
@@ -354,7 +354,7 @@ App.get_color_items = (mode, action = `filter`) => {
         text: `All`,
         action: () => {
           if (action === `filter`) {
-            App.filter_color({mode, id: `all`})
+            App.filter_color({mode, id: `all`, from})
           }
           else if (action === `show`) {
             App.show_tab_list(`color_allthecolors`)
@@ -382,7 +382,7 @@ App.get_color_items = (mode, action = `filter`) => {
         text: name,
         action: () => {
           if (action === `filter`) {
-            App.filter_color({mode, id: color.id})
+            App.filter_color({mode, id: color.id, from})
           }
           else if (action === `show`) {
             App.show_tab_list(`color_${color.id}`)
@@ -784,6 +784,10 @@ App.filter_color = (args = {}) => {
     text = color.name
   }
 
+  if (App.refine_string) {
+    args.from === App.refine_string
+  }
+
   App.complex_filter({
     value,
     text,
@@ -826,8 +830,8 @@ App.select_color = (id, e) => {
   App.toggle_selected_items(items, true)
 }
 
-App.show_filter_color_menu = (mode, e) => {
-  let items = App.get_color_items(mode, `filter`)
+App.show_filter_color_menu = (mode, e, from) => {
+  let items = App.get_color_items(mode, `filter`, from)
   App.show_context({items, e})
 }
 

@@ -179,6 +179,7 @@ App.item_list = []
 App.change_group_args = []
 App.updating_index = false
 App.check_group_items = []
+App.refining_filter = false
 
 App.ignored_tokens = [
   ``,
