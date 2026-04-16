@@ -260,7 +260,6 @@ App.user_madprops_settings = () => {
   // Tab Box
 
   App.set_setting({setting: `show_tab_box`, value: true})
-  App.set_setting({setting: `tab_box_mode`, value: `special`})
   App.set_setting({setting: `tab_box_size`, value: `normal`})
   App.set_setting({setting: `tab_box_colors_enabled`, value: true})
   App.set_setting({setting: `tab_box_color`, value: `rgba(47, 99, 151, 0.18)`})
