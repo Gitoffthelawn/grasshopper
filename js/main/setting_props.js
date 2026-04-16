@@ -4837,6 +4837,8 @@ App.build_settings = () => {
         {cmd: `filter_file_tabs`},
         {cmd: `filter_tab_clusters`},
         {cmd: `show_filter_color_menu`},
+        {cmd: `show_filter_tag_menu`},
+        {cmd: `show_filter_icon_menu`},
       ],
       separator: true,
       info: `This list appears when middle clicking the Filter

@@ -4385,7 +4385,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: tags_icon,
       action: (args) => {
-        App.show_filter_tag_menu(args.mode, args.e)
+        App.show_filter_tag_menu(args.mode, args.e, args.from)
       },
       info: `Show the Filter Tag Menu`,
     },
@@ -4548,7 +4548,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: bot_icon,
       action: (args) => {
-        App.show_filter_icon_menu(args.mode, args.e)
+        App.show_filter_icon_menu(args.mode, args.e, args.from)
       },
       info: `Show the Filter Icon Menu`,
     },
