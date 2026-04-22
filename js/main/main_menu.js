@@ -59,11 +59,11 @@ App.show_main_menu = (mode) => {
   items.push(App.cmd_item({cmd: `toggle_tab_sort`, short: true}))
   items.push(App.cmd_item({cmd: `lock_screen`, short: true}))
   items.push(App.cmd_item({cmd: `show_palette`, short: true}))
-  App.sep(items)
 
-  items.push({text: `💉 Booster`, direct_action: () => {
-    App.booster_shot()
-  }, info: `Enable scripts to improve the experience`})
+  // App.sep(items)
+  // items.push({text: `💉 Booster`, direct_action: () => {
+  //   App.booster_shot()
+  // }, info: `Enable scripts to improve the experience`})
 
   App.sep(items)
   items.push(App.cmd_item({cmd: `focus_window_menu`, short: true}))

@@ -5794,16 +5794,16 @@ App.setup_commands = () => {
       },
       info: `Insert x number of subheaders between the tabs`,
     },
-    {
-      name: `Booster Shot`,
-      short_name: `Boost`,
-      cmd: `booster_shot`,
-      icon: injection_icon,
-      action: (args) => {
-        App.booster_shot()
-      },
-      info: `Allow injecting code to websites to improve the experience`,
-    },
+    // {
+    //   name: `Booster Shot`,
+    //   short_name: `Boost`,
+    //   cmd: `booster_shot`,
+    //   icon: injection_icon,
+    //   action: (args) => {
+    //     App.booster_shot()
+    //   },
+    //   info: `Allow injecting code to websites to improve the experience`,
+    // },
     {
       name: `Restart`,
       cmd: `restart_extension`,

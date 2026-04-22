@@ -10,7 +10,6 @@ manifest = JSON.parse(raw_data)
 target = ARGV[0]
 
 # Clean the base state
-manifest["optional_permissions"]&.delete("<all_urls>")
 manifest.delete("optional_host_permissions")
 
 if target == "chrome"
@@ -20,7 +19,7 @@ if target == "chrome"
   }
 
   manifest.delete("sidebar_action")
-  manifest["optional_host_permissions"] = ["<all_urls>"]
+  manifest["optional_host_permissions"] = []
 
   # 1. Remove Firefox-only permissions
   manifest["permissions"]&.delete("contextualIdentities")
@@ -40,7 +39,6 @@ else # Firefox
 
   # Ensure the array exists before pushing
   manifest["optional_permissions"] ||= []
-  manifest["optional_permissions"].push("<all_urls>")
 end
 
 File.write(output_file, JSON.pretty_generate(manifest))
