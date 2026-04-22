@@ -132,6 +132,10 @@ App.check_command = (command, args = {}) => {
     }
   }
 
+  if (command.disabled) {
+    return false
+  }
+
   args.on_items = App.on_items()
   args.on_media = App.on_media()
 
