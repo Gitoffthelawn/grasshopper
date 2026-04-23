@@ -63,15 +63,20 @@ App.check_tab_session = async (items = [], force = false) => {
 
   for (let item of items) {
     for (let key in App.edit_props) {
-      let value = await App.get_tab_value(item.id, `custom_${key}`)
+      try {
+        let value = await App.get_tab_value(item.id, `custom_${key}`)
 
-      if (value === undefined) {
-        if (!force) {
-          continue
+        if (value === undefined) {
+          if (!force) {
+            continue
+          }
         }
-      }
 
-      App.apply_edit({what: key, item, value})
+        App.apply_edit({what: key, item, value})
+      }
+      catch (err) {
+        // Prevent the loop from crashing if the tab was closed during processing
+      }
     }
   }
 
