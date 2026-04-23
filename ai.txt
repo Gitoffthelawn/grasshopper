@@ -1,4 +1,4 @@
-This project started in 2022, and currently it has over 66k lines in total.
+This project started in 2022, and currently it has over 66k lines of code in total.
 
 While technically AI was available at the time, I did not use it to write the code.
 
