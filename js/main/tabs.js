@@ -127,14 +127,14 @@ App.get_tabs = async (all = false) => {
 
   if (App.tabs_normal()) {
     tabs.sort((a, b) => {
-      return a.index < b.index ? -1 : 1
+      return a.index - b.index
     })
 
     App.set_tabs_title(`Tabs`)
   }
   else if (App.tabs_recent()) {
     tabs.sort((a, b) => {
-      return a.lastAccessed > b.lastAccessed ? -1 : 1
+      return b.lastAccessed - a.lastAccessed
     })
 
     App.set_tabs_title(`Recent`)
