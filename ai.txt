@@ -1,0 +1,17 @@
+This project started in 2022, and currently it has over 66k lines in total.
+
+While technically AI was available at the time, I did not use it to write the code.
+
+Basically all the code was written by hand, including the formatting.
+
+I did however use AI recently to check why some things were not working.
+
+And I plan on doing the following:
+
+- Keep writing the code by hand.
+
+This way I keep it orderly, and I know where everything is.
+
+- Use AI to fix specific issues.
+
+Mainly by pointing to specific files and discussing what I should do.
