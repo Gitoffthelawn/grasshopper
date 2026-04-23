@@ -69,6 +69,7 @@ App.about_credits_items = [
   `Falconry by sjehuda`,
   `Shortcuts by u2615`,
   `Ovation by getcheffy`,
+  `Poweruse by DWolf19`,
 ]
 
 App.about_links_items = [
