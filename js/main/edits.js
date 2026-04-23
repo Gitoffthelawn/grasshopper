@@ -61,23 +61,30 @@ App.check_tab_session = async (items = [], force = false) => {
     items = App.get_items(`tabs`)
   }
 
-  for (let item of items) {
-    for (let key in App.edit_props) {
-      try {
-        let value = await App.get_tab_value(item.id, `custom_${key}`)
+  let keys = Object.keys(App.edit_props)
+  let chunk_size = 100
 
-        if (value === undefined) {
-          if (!force) {
-            continue
+  for (let i = 0; i < items.length; i += chunk_size) {
+    let chunk = items.slice(i, i + chunk_size)
+
+    let promises = chunk.map(async (item) => {
+      let key_promises = keys.map(async (key) => {
+        try {
+          let value = await App.get_tab_value(item.id, `custom_${key}`)
+
+          if ((value !== undefined) || force) {
+            App.apply_edit({what: key, item, value})
           }
         }
+        catch (err) {
+          // Prevent the loop from crashing
+        }
+      })
 
-        App.apply_edit({what: key, item, value})
-      }
-      catch (err) {
-        // Prevent the loop from crashing if the tab was closed during processing
-      }
-    }
+      await Promise.all(key_promises)
+    })
+
+    await Promise.all(promises)
   }
 
   if (!App.tab_session_first) {
