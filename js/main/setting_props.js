@@ -395,7 +395,8 @@ App.build_settings = () => {
       type: `text`,
       value: `https://www.google.com/search?q=%s`,
       placeholder: `URL`,
-      info: `Default search engine for the > and ? commands and others`,
+      info: `Default search engine for the > and ? commands and others
+      Use %s as the query placeholder`,
       version: 1,
     },
     close_on_focus: {
