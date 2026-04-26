@@ -2,8 +2,6 @@ App.setup_items = () => {
   App.check_selected_debouncer = App.create_debouncer((mode) => {
     App.do_check_selected(mode)
   }, App.check_selected_delay)
-
-  App.start_item_observer()
 }
 
 App.remove_selected_class = (mode) => {
@@ -374,7 +372,11 @@ App.create_empty_item_element = (item) => {
   item.element.dataset.id = item.id
   item.element.dataset.mode = item.mode
   item.element_ready = false
-  App.item_observer.observe(item.element)
+  App.get_observer(item.mode).observe(item.element)
+}
+
+App.get_observer = (mode) => {
+  return App[`item_observer_${mode}`]
 }
 
 App.create_item_element = (item) => {
@@ -382,7 +384,7 @@ App.create_item_element = (item) => {
     return
   }
 
-  App.item_observer.unobserve(item.element)
+  App.get_observer(item.mode).unobserve(item.element)
   item.element.classList.remove(`empty_element`)
   App.check_header(item)
   App.create_hover_button(item, `left`)
@@ -1286,7 +1288,7 @@ App.build_item_window = (mode) => {
   }
 
   container.tabIndex = 1
-  let container_col = DOM.create(`div`, `item_container_col`)
+  let container_col = DOM.create(`div`, `item_container_col`, `observer_container_${mode}`)
 
   if (scroller) {
     container_col.append(scroller)
@@ -1310,6 +1312,7 @@ App.build_item_window = (mode) => {
     content.append(favorites_bar)
   }
 
+  App.start_item_observer(mode)
   let btns = DOM.create(`div`, `item_top_buttons`)
   let bar = DOM.create(`div`, `item_top_bar`, `item_top_bar_${mode}`)
 
@@ -1596,8 +1599,11 @@ App.toggle_auto_scroll = () => {
   App.toggle_message(`Auto Scroll`, `auto_scroll`)
 }
 
-App.start_item_observer = () => {
-  App.item_observer = new IntersectionObserver((entries) => {
+App.start_item_observer = (mode) => {
+  let root = DOM.el(`#${mode}_container`)
+  let options = {root, rootMargin: `200px 0px`, threshold: 0}
+
+  App[`item_observer_${mode}`] = new IntersectionObserver((entries) => {
     for (let entry of entries) {
       if (entry.isIntersecting) {
         let id = entry.target.dataset.id
@@ -1605,11 +1611,12 @@ App.start_item_observer = () => {
         let item = App.get_item_by_id(mode, id)
 
         if (item) {
+          console.log(item.title)
           App.create_item_element(item)
         }
       }
     }
-  })
+  }, options)
 }
 
 App.do_scroll_on_mouse_out = () => {
