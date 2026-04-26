@@ -180,6 +180,11 @@ App.change_group_args = []
 App.updating_index = false
 App.check_group_items = []
 App.refining_filter = false
+App.edge_scrolling = false
+App.edge_scroll_threshold = 100
+App.edge_scroll_delay = 400
+App.edge_scroll_speed = 8
+App.edge_scroll_amount = 16
 
 App.ignored_tokens = [
   ``,

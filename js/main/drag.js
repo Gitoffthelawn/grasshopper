@@ -41,7 +41,16 @@ App.setup_item_drag = (mode) => {
     App.dragstart_action(mode, e)
   })
 
+  DOM.ev(container, `dragover`, (e) => {
+    e.preventDefault()
+    App.handle_drag_scroll(container, e.clientY)
+  })
+
   DOM.ev(container, `dragenter`, (e) => {
+    if (App.edge_scrolling) {
+      return
+    }
+
     if (App.drag_mode === `pinline`) {
       App.dragenter_pinline(mode, e)
       return
@@ -51,6 +60,8 @@ App.setup_item_drag = (mode) => {
   })
 
   DOM.ev(container, `dragend`, (e) => {
+    App.stop_drag_scroll()
+
     if (App.icon_pick_down) {
       App.icon_pick_down = false
       return
@@ -63,6 +74,46 @@ App.setup_item_drag = (mode) => {
 
     App.dragend_action(mode, e)
   })
+}
+
+App.handle_drag_scroll = (container, client_y) => {
+  let rect = container.getBoundingClientRect()
+  let at_top = client_y - rect.top < App.edge_scroll_threshold
+  let at_bottom = rect.bottom - client_y < App.edge_scroll_threshold
+
+  if (at_top) {
+    App.init_scroll_timer(container, -App.edge_scroll_speed, App.edge_scroll_delay)
+  }
+  else if (at_bottom) {
+    App.init_scroll_timer(container, App.edge_scroll_speed, App.edge_scroll_delay)
+  }
+  else {
+    App.stop_drag_scroll()
+  }
+}
+
+App.init_scroll_timer = (container, amount, delay) => {
+  if (App.scroll_active_direction === amount) {
+    return
+  }
+
+  App.stop_drag_scroll()
+  App.scroll_active_direction = amount
+
+  App.scroll_timeout = setTimeout(() => {
+    App.edge_scrolling = true
+
+    App.scroll_interval = setInterval(() => {
+      container.scrollTop += amount
+    }, App.edge_scroll_amount)
+  }, delay)
+}
+
+App.stop_drag_scroll = () => {
+  clearTimeout(App.scroll_timeout)
+  clearInterval(App.scroll_interval)
+  App.scroll_active_direction = null
+  App.edge_scrolling = false
 }
 
 App.drag_active = (mode, e) => {
