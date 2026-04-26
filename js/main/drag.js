@@ -93,6 +93,10 @@ App.handle_drag_scroll = (container, client_y) => {
 }
 
 App.init_scroll_timer = (container, amount, delay) => {
+  if (!App.get_setting(`edge_scroll`)) {
+    return
+  }
+
   if (App.scroll_active_direction === amount) {
     return
   }
