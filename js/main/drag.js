@@ -233,13 +233,18 @@ App.dragenter_action = (mode, e) => {
     return false
   }
 
-  let direction = e.clientY > App.drag_y ? `down` : `up`
-  App.drag_y = e.clientY
-
   if (App.drag_els.includes(el)) {
     e.preventDefault()
     return false
   }
+
+  if (e.clientY === App.drag_y) {
+    e.preventDefault()
+    return false
+  }
+
+  let direction = e.clientY > App.drag_y ? `down` : `up`
+  App.drag_y = e.clientY
 
   if (direction === `up`) {
     el.before(...App.drag_els)
