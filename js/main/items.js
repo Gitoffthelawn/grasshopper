@@ -1611,7 +1611,6 @@ App.start_item_observer = (mode) => {
         let item = App.get_item_by_id(mode, id)
 
         if (item) {
-          console.log(item.title)
           App.create_item_element(item)
         }
       }
