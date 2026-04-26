@@ -441,6 +441,13 @@ App.build_settings = () => {
       info: `Enable smooth list scrolling in some cases`,
       version: 1,
     },
+    edge_scroll: {
+      name: `Edge Scroll`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable or disable automatic scrolling when dragging items to the top or bottom edges`,
+      version: 1,
+    },
     multi_bold: {
       name: `Multi Bold`,
       type: `checkbox`,
@@ -6010,13 +6017,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Obfuscate the icons when the tab is obfuscated`,
-      version: 1,
-    },
-    edge_scroll: {
-      name: `Edge Scroll`,
-      type: `checkbox`,
-      value: true,
-      info: `Enable or disable automatic scrolling when dragging items to the top or bottom edges`,
       version: 1,
     },
     sort_settings: {
