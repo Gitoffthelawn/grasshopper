@@ -42,7 +42,7 @@ App.remove_tab_value = async (tab_id, key) => {
   }
 }
 
-App.load_session = async (item) => {
+App.load_session = async (item, force = false) => {
   let created = false
 
   if (!item.element_ready) {
@@ -50,7 +50,7 @@ App.load_session = async (item) => {
     created = true
   }
 
-  if (item.session_loaded) {
+  if (item.session_loaded || (item.mode !== `tabs`)) {
     return
   }
 
@@ -62,7 +62,6 @@ App.load_session = async (item) => {
 
       if (value !== undefined || force) {
         App.apply_edit({what: key, item, value})
-        console.log(key, item.title, value)
       }
     }
     catch (err) {

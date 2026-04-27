@@ -1800,11 +1800,12 @@ App.create_filter_button = (mode) => {
     })
   }
 
-  add_menu(`color`)
-  add_menu(`tag`)
-  add_menu(`icon`)
-
-  fmodes.push(separator())
+  if (mode === `tabs`) {
+    add_menu(`color`)
+    add_menu(`tag`)
+    add_menu(`icon`)
+    fmodes.push(separator())
+  }
 
   fmodes.push({cmd: `filter_https_tabs`})
   fmodes.push({cmd: `filter_http_tabs`})
@@ -1818,13 +1819,14 @@ App.create_filter_button = (mode) => {
     add_menu(`container`)
   }
 
-  fmodes.push(separator())
+  if (mode === `tabs`) {
+    fmodes.push(separator())
+    fmodes.push({cmd: `filter_titled_tabs`})
+    fmodes.push({cmd: `filter_notes_tabs`})
+    fmodes.push({cmd: `filter_edited_tabs`})
+  }
 
-  fmodes.push({cmd: `filter_titled_tabs`})
-  fmodes.push({cmd: `filter_notes_tabs`})
-  fmodes.push({cmd: `filter_edited_tabs`})
-
-  if (mode !== `tabs`) {
+  if (!App.is_tabs_mode(mode)) {
     fmodes.push(separator())
     fmodes.push({cmd: `filter_no_tab`})
   }
