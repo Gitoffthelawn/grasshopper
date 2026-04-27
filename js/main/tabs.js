@@ -14,7 +14,7 @@ App.setup_tabs = () => {
       let item = await App.refresh_tab({id, info})
 
       if (item) {
-        App.check_tab_session([item])
+        App.load_session(item)
         App.update_tab_box()
       }
     }

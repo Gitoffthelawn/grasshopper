@@ -56,55 +56,6 @@ App.get_bool_edit_props = () => {
   })
 }
 
-App.check_tab_session = async (items = [], force = false) => {
-  if (!items.length) {
-    items = App.get_items(`tabs`)
-  }
-
-  // Cancellation token: stops the ghost loop if the user sorts again
-  App.session_check_id = (App.session_check_id || 0) + 1
-  let check_id = App.session_check_id
-  let keys = Object.keys(App.edit_props)
-
-  // Process tabs in chunks of 50 to let the DOM breathe
-  let chunk_size = 50;
-
-  for (let i = 0; i < items.length; i += chunk_size) {
-    if (App.session_check_id !== check_id) return; // Abort if sort changed
-
-    let chunk = items.slice(i, i + chunk_size);
-
-    let promises = chunk.map(async (item) => {
-      let key_promises = keys.map(async (key) => {
-        try {
-          let value = await App.get_tab_value(item.id, `custom_${key}`)
-          if (value !== undefined || force) {
-            App.apply_edit({what: key, item, value})
-          }
-        } catch (err) {}
-      })
-      await Promise.all(key_promises)
-    })
-
-    await Promise.all(promises)
-
-    // This allows the browser to paint the DOM
-    await new Promise(resolve => setTimeout(resolve, 0));
-  }
-
-  if (App.session_check_id === check_id) {
-    if (!App.tab_session_first) {
-      App.tab_session_first = true
-      if (App.active_mode === `tabs`) {
-        if (!App.scroll_done) {
-          App.scroll_to_item({item: App.get_selected(`tabs`), force: true})
-        }
-        App.update_tab_box()
-      }
-    }
-  }
-}
-
 App.custom_save = async (id, what, value) => {
   if (Array.isArray(value)) {
     if (!value.length) {

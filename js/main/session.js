@@ -41,3 +41,37 @@ App.remove_tab_value = async (tab_id, key) => {
     await ext_api.storage.session.remove(storage_key)
   }
 }
+
+App.load_session = async (item, create = true) => {
+  if (item.session_loaded) {
+    return
+  }
+
+  let keys = Object.keys(App.edit_props)
+
+  let promises = keys.map(async (key) => {
+    try {
+      let value = await App.get_tab_value(item.id, `custom_${key}`)
+
+      if (value !== undefined || force) {
+        App.apply_edit({what: key, item, value})
+      }
+    }
+    catch (err) {
+      //
+    }
+
+    await Promise.all(promises)
+    item.session_loaded = true
+
+    if (item.element_ready) {
+      App.refresh_item_element(item)
+    }
+  })
+
+  if (create) {
+    if (!item.element_ready) {
+      App.create_item_element(item)
+    }
+  }
+}

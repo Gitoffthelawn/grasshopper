@@ -54,7 +54,6 @@ App.process_info_list = (mode, info_list) => {
   App.do_check_pinline()
 
   if (mode === `tabs`) {
-    App.check_tab_session()
     App.update_tab_box()
   }
 }

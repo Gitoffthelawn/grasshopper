@@ -372,6 +372,7 @@ App.create_empty_item_element = (item) => {
   item.element.dataset.id = item.id
   item.element.dataset.mode = item.mode
   item.element_ready = false
+  item.session_loaded = false
   App.get_observer(item.mode).observe(item.element)
 }
 
@@ -1601,9 +1602,9 @@ App.toggle_auto_scroll = () => {
 
 App.start_item_observer = (mode) => {
   let root = DOM.el(`#${mode}_container`)
-  let options = {root, rootMargin: `200px 0px`, threshold: 0}
+  let options = {root, rootMargin: `0px 0px`, threshold: 0}
 
-  App[`item_observer_${mode}`] = new IntersectionObserver((entries) => {
+  App[`item_observer_${mode}`] = new IntersectionObserver(async (entries) => {
     for (let entry of entries) {
       if (entry.isIntersecting) {
         let id = entry.target.dataset.id
@@ -1611,7 +1612,7 @@ App.start_item_observer = (mode) => {
         let item = App.get_item_by_id(mode, id)
 
         if (item) {
-          App.create_item_element(item)
+          App.load_session(item)
         }
       }
     }
@@ -1641,7 +1642,7 @@ App.do_progressive_fill = async () => {
 
   for (let item of App.get_items(`tabs`)) {
     if (item.element && !item.element_ready) {
-      App.create_item_element(item)
+      App.load_session(item)
       n += 1
 
       if (n >= App.progressive_fill_batch) {

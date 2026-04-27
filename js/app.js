@@ -94,7 +94,6 @@ App.max_icon_picks = 10
 App.max_group_picks = 10
 App.popup_width = 800
 App.popup_height = 600
-App.tab_session_first = false
 App.force_debug = false
 App.copied_tabs = []
 App.filter_menus = {}

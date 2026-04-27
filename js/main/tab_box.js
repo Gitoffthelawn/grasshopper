@@ -428,7 +428,7 @@ App.get_tab_box_items = (o_items, mode) => {
     item.override_icon_tab_box = undefined
 
     if (!o_item.element_ready) {
-      App.create_item_element(o_item)
+      App.load_session(o_item)
     }
 
     App.create_empty_item_element(item)
