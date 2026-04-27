@@ -60,7 +60,7 @@ App.load_session = async (item, force = false) => {
     try {
       let value = await App.get_tab_value(item.id, `custom_${key}`)
 
-      if (value !== undefined || force) {
+      if ((value !== undefined) || force) {
         App.apply_edit({what: key, item, value})
       }
     }
