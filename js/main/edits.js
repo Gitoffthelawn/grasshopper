@@ -63,13 +63,11 @@ App.custom_save = async (id, what, value) => {
     }
   }
 
-  let name = `custom_${what}`
-
   if (value) {
-    App.set_tab_value(id, name, value)
+    App.set_tab_value(id, what, value)
   }
   else {
-    App.remove_tab_value(id, name)
+    App.remove_tab_value(id, what)
   }
 
   try {

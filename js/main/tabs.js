@@ -1501,7 +1501,7 @@ App.import_tabs = async (value = ``) => {
           let value = info[name]
 
           if (value !== undefined) {
-            await App.set_tab_value(tab.id, name, value)
+            await App.set_tab_value(tab.id, prop, value)
           }
         }
       }
