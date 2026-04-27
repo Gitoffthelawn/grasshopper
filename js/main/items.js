@@ -1602,7 +1602,7 @@ App.toggle_auto_scroll = () => {
 
 App.start_item_observer = (mode) => {
   let root = DOM.el(`#${mode}_container`)
-  let options = {root, rootMargin: `200px 0px`, threshold: 0}
+  let options = {root, rootMargin: `150px 0px`, threshold: 0}
 
   App[`item_observer_${mode}`] = new IntersectionObserver(async (entries) => {
     for (let entry of entries) {
