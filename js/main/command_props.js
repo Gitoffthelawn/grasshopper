@@ -150,7 +150,7 @@ App.setup_commands = () => {
     name: `Filter Colors`,
     short_name: `Colors`,
     cmd: `filter_color_all`,
-    modes: [`items`],
+    modes: [`tabs`],
     icon: colors_icon,
     filter_mode: true,
     action: (args) => {
@@ -335,7 +335,7 @@ App.setup_commands = () => {
     name: `Filter Color Menu`,
     short_name: `Colors`,
     cmd: `show_filter_color_menu`,
-    modes: [`items`],
+    modes: [`tabs`],
     icon: colors_icon,
     action: (args) => {
       App.show_filter_color_menu(args.mode, args.e, args.from)
@@ -4149,7 +4149,7 @@ App.setup_commands = () => {
     {
       name: `Filter Title`,
       cmd: `filter_title`,
-      modes: [`items`],
+      modes: [`tabs`],
       item: true,
       icon: filter_icon,
       action: (args) => {
@@ -4295,7 +4295,7 @@ App.setup_commands = () => {
     {
       name: `Filter Color`,
       cmd: `filter_color`,
-      modes: [`items`],
+      modes: [`tabs`],
       item: true,
       color: true,
       icon: colors_icon,
@@ -4357,7 +4357,7 @@ App.setup_commands = () => {
     {
       name: `Filter Tag`,
       cmd: `filter_tag`,
-      modes: [`items`],
+      modes: [`tabs`],
       some_tags: true,
       item: true,
       icon: tags_icon,
@@ -4382,7 +4382,7 @@ App.setup_commands = () => {
       name: `Filter Tag Menu`,
       short_name: `Tags`,
       cmd: `show_filter_tag_menu`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: tags_icon,
       action: (args) => {
         App.show_filter_tag_menu(args.mode, args.e, args.from)
@@ -4508,7 +4508,7 @@ App.setup_commands = () => {
     {
       name: `Filter Icon`,
       cmd: `filter_icon`,
-      modes: [`items`],
+      modes: [`tabs`],
       item: true,
       some_icon: true,
       icon: bot_icon,
@@ -4545,7 +4545,7 @@ App.setup_commands = () => {
       name: `Filter Icon Menu`,
       short_name: `Icons`,
       cmd: `show_filter_icon_menu`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: bot_icon,
       action: (args) => {
         App.show_filter_icon_menu(args.mode, args.e, args.from)
@@ -4757,7 +4757,7 @@ App.setup_commands = () => {
       name: `Filter Titled`,
       short_name: `Titled`,
       cmd: `filter_titled_tabs`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: notepad_icon,
       filter_mode: true,
       action: (args) => {
@@ -4769,7 +4769,7 @@ App.setup_commands = () => {
       name: `Filter Notes`,
       short_name: `Notes`,
       cmd: `filter_notes_tabs`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: notes_icon,
       filter_mode: true,
       action: (args) => {
@@ -4859,7 +4859,7 @@ App.setup_commands = () => {
       name: `Filter Edited`,
       short_name: `Edited`,
       cmd: `filter_edited_tabs`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: notepad_icon,
       filter_mode: true,
       action: (args) => {
