@@ -193,7 +193,7 @@ App.process_info = (args = {}) => {
     let fill = App.get_setting(`fill_elements`)
 
     if (fill === `instant`) {
-      App.create_item_element(item)
+      App.load_session(item)
     }
 
     if (args.mode === `tabs`) {
