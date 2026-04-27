@@ -181,7 +181,7 @@ App.setup_commands = () => {
       name,
       short_name: color.name,
       cmd: `filter_color_${color.id}`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon,
       filter_mode: true,
       action: (args) => {
@@ -347,7 +347,7 @@ App.setup_commands = () => {
     name: `Show Color Menu`,
     short_name: `Colors`,
     cmd: `show_show_color_menu`,
-    modes: [`items`],
+    modes: [`tabs`],
     icon: colors_icon,
     action: (args) => {
       App.show_show_color_menu(args.mode, args.e)
@@ -3236,7 +3236,7 @@ App.setup_commands = () => {
       short_name: `Clusters`,
       cmd: `filter_tab_clusters`,
       icon: cluster_icon,
-      modes: [`items`],
+      modes: [`tabs`, `global`],
       action: (args) => {
         App.filter_cmd(args.mode, args.self.cmd, args.from)
       },
@@ -3536,7 +3536,7 @@ App.setup_commands = () => {
     {
       name: `Filter Jump`,
       cmd: `filter_jump_tag_1`,
-      modes: [`items`],
+      modes: [`tabs`],
       filter_mode: true,
       icon: tags_icon,
       action: (args) => {
@@ -3547,7 +3547,7 @@ App.setup_commands = () => {
     {
       name: `Filter Jump 2`,
       cmd: `filter_jump_tag_2`,
-      modes: [`items`],
+      modes: [`tabs`],
       filter_mode: true,
       icon: tags_icon,
       action: (args) => {
@@ -3558,7 +3558,7 @@ App.setup_commands = () => {
     {
       name: `Filter Jump 3`,
       cmd: `filter_jump_tag_3`,
-      modes: [`items`],
+      modes: [`tabs`],
       filter_mode: true,
       icon: tags_icon,
       action: (args) => {
@@ -4313,7 +4313,7 @@ App.setup_commands = () => {
       name: `Filter Group`,
       short_name: `Filter`,
       cmd: `filter_group`,
-      modes: [`items`],
+      modes: [`tabs`],
       item: true,
       icon: group_icon,
       action: (args) => {
@@ -4393,7 +4393,7 @@ App.setup_commands = () => {
       name: `Show Tag Menu`,
       short_name: `Tags`,
       cmd: `show_show_filter_tag_menu`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: tags_icon,
       action: (args) => {
         App.show_show_tag_menu(args.mode, args.e)
@@ -4425,7 +4425,7 @@ App.setup_commands = () => {
       name: `Filter All Tags`,
       short_name: `All Tags`,
       cmd: `filter_tag_all`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: tags_icon,
       filter_mode: true,
       action: (args) => {
@@ -4533,7 +4533,7 @@ App.setup_commands = () => {
       name: `Filter All Icons`,
       short_name: `All Icons`,
       cmd: `filter_icon_all`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: bot_icon,
       filter_mode: true,
       action: (args) => {
@@ -4781,7 +4781,7 @@ App.setup_commands = () => {
       name: `Filter Roots`,
       short_name: `Roots`,
       cmd: `filter_root_tabs`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: root_icon,
       filter_mode: true,
       action: (args) => {
@@ -4871,7 +4871,7 @@ App.setup_commands = () => {
       name: `Filter Zones`,
       short_name: `Zones`,
       cmd: `filter_zone_tabs`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: zone_icon,
       filter_mode: true,
       action: (args) => {
@@ -4883,7 +4883,7 @@ App.setup_commands = () => {
       name: `Filter All Groups`,
       short_name: `Groups`,
       cmd: `filter_group_all`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: group_icon,
       filter_mode: true,
       action: (args) => {
@@ -4895,7 +4895,7 @@ App.setup_commands = () => {
       name: `Filter Group Menu`,
       short_name: `Groups`,
       cmd: `show_filter_group_menu`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: group_icon,
       action: (args) => {
         App.show_filter_group_menu(args.mode, args.e)
