@@ -1,16 +1,9 @@
 App.get_tab_value = async (tab_id, key) => {
   let ext_api = App.browser()
+  let grasshopper = await ext_api.sessions.getTabValue(tab_id, `grasshopper`)
 
-  // Firefox handles this natively
-  if (ext_api.sessions && ext_api.sessions.getTabValue) {
-    return await ext_api.sessions.getTabValue(tab_id, key)
-  }
-
-  // Chrome requires session storage
-  if (ext_api.storage && ext_api.storage.session) {
-    let storage_key = `tab_${tab_id}_${key}`
-    let result = await ext_api.storage.session.get(storage_key)
-    return result[storage_key]
+  if (grasshopper) {
+    return grasshopper[key]
   }
 
   return undefined
@@ -18,27 +11,23 @@ App.get_tab_value = async (tab_id, key) => {
 
 App.set_tab_value = async (tab_id, key, value) => {
   let ext_api = App.browser()
+  let grasshopper = await ext_api.sessions.getTabValue(tab_id, `grasshopper`)
 
-  if (ext_api.sessions && ext_api.sessions.setTabValue) {
-    await ext_api.sessions.setTabValue(tab_id, key, value)
+  if (!grasshopper) {
+    grasshopper = {}
   }
 
-  else if (ext_api.storage && ext_api.storage.session) {
-    let storage_key = `tab_${tab_id}_${key}`
-    await ext_api.storage.session.set({[storage_key]:value})
-  }
+  grasshopper[key] = value
+  await ext_api.sessions.setTabValue(tab_id, `grasshopper`, grasshopper)
 }
 
 App.remove_tab_value = async (tab_id, key) => {
   let ext_api = App.browser()
+  let grasshopper = await ext_api.sessions.getTabValue(tab_id, `grasshopper`)
 
-  if (ext_api.sessions && ext_api.sessions.removeTabValue) {
-    await ext_api.sessions.removeTabValue(tab_id, key)
-  }
-
-  else if (ext_api.storage && ext_api.storage.session) {
-    let storage_key = `tab_${tab_id}_${key}`
-    await ext_api.storage.session.remove(storage_key)
+  if (grasshopper && (grasshopper[key] !== undefined)) {
+    delete grasshopper[key]
+    await ext_api.sessions.setTabValue(tab_id, `grasshopper`, grasshopper)
   }
 }
 
@@ -55,24 +44,53 @@ App.load_session = async (item, force = false) => {
   }
 
   let keys = Object.keys(App.edit_props)
+  let ext_api = App.browser()
+  let grasshopper = await ext_api.sessions.getTabValue(item.id, `grasshopper`)
 
-  let promises = keys.map(async (key) => {
-    try {
-      let value = await App.get_tab_value(item.id, `custom_${key}`)
+  if (!grasshopper) {
+    grasshopper = {}
+    let needs_migration = false
 
-      if ((value !== undefined) || force) {
-        App.apply_edit({what: key, item, value})
+    let promises = keys.map(async (key) => {
+      let legacy_key = `custom_${key}`
+      let value = undefined
+
+      try {
+        value = await ext_api.sessions.getTabValue(item.id, legacy_key)
+
+        if (value !== undefined) {
+          await ext_api.sessions.removeTabValue(item.id, legacy_key)
+        }
+
+        if (value !== undefined) {
+          grasshopper[key] = value
+          needs_migration = true
+        }
       }
-    }
-    catch (err) {
-      //
-    }
+      catch (err) {
+        //
+      }
+    })
 
     await Promise.all(promises)
-    item.session_loaded = true
 
-    if (!created) {
-      App.refresh_item_element(item)
+    if (needs_migration) {
+      await ext_api.sessions.setTabValue(item.id, `grasshopper`, grasshopper)
+      App.log(`Tab values migrated`)
     }
-  })
+  }
+
+  for (let key of keys) {
+    let value = grasshopper[key]
+
+    if ((value !== undefined) || force) {
+      App.apply_edit({what: key, item, value})
+    }
+  }
+
+  item.session_loaded = true
+
+  if (!created) {
+    App.refresh_item_element(item)
+  }
 }
