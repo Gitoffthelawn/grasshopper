@@ -841,6 +841,8 @@ App.do_move_tab_index = async (id, index) => {
 
 App.on_tab_activated = async (info) => {
   let old_active = []
+  clearTimeout(App.last_use_timeout)
+  let use_delay = App.get_setting(`use_delay`)
 
   for (let item of App.get_items(`tabs`)) {
     let current = item.id === info.tabId
@@ -854,6 +856,12 @@ App.on_tab_activated = async (info) => {
     if (item.active) {
       item.unread = false
       App.push_recent_tab(item)
+
+      App.last_use_timeout = setTimeout(() => {
+        if (item && item.active) {
+          item.last_use = App.now()
+        }
+      }, use_delay)
     }
   }
 
@@ -1717,8 +1725,8 @@ App.get_special_tabs = () => {
         return 1
       }
 
-      // If neither tab is in recent, sort by lastAccessed
-      return a.lastAccessed > b.lastAccessed ? -1 : 1
+      // If neither tab is in recent, sort by last_use
+      return a.last_use > b.last_use ? -1 : 1
     })
   }
 

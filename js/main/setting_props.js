@@ -5888,6 +5888,17 @@ App.build_settings = () => {
       info: `Symbol to use on obfuscated text`,
       version: 1,
     },
+    use_delay: {
+      name: `Use Delay`,
+      type: `number`,
+      value: 3000,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `How many milliseconds must pass for an active tab to be considered used
+      This is used in Recent Tabs, it will only consider used tabs`,
+      version: 1,
+    },
     idle_tabs_delay: {
       name: `Idle Tabs Delay`,
       type: `number`,

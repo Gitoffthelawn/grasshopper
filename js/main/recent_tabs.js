@@ -26,7 +26,7 @@ App.get_recent_tabs = (args = {}) => {
   let tabs = App.get_items(`tabs`).slice(0)
 
   tabs.sort((a, b) => {
-    return a.last_access > b.last_access ? -1 : 1
+    return a.last_use > b.last_use ? -1 : 1
   })
 
   if (!args.active) {

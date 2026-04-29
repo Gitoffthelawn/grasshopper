@@ -146,6 +146,14 @@ App.process_info = (args = {}) => {
     item.muted = args.info.mutedInfo.muted
     item.unloaded = args.info.discarded
     item.last_access = args.info.lastAccessed
+
+    if (args.o_item && args.o_item.last_use) {
+      item.last_use = args.o_item.last_use
+    }
+    else {
+      item.last_use = args.info.lastAccessed
+    }
+
     item.status = args.info.status
     item.parent = args.info.openerTabId
     item.container_name = args.info.container_name
