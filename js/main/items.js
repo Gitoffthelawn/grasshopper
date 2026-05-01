@@ -1641,8 +1641,8 @@ App.do_progressive_fill = async () => {
   let n = 0
 
   for (let item of App.get_items(`tabs`)) {
-    if (item.element && !item.element_ready) {
-      App.load_session(item)
+    if (item.element && (!item.element_ready || !item.session_loaded)) {
+      await App.load_session(item)
       n += 1
 
       if (n >= App.progressive_fill_batch) {
