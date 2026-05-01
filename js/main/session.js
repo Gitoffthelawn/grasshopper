@@ -75,7 +75,13 @@ App.load_session = async (item, force = false) => {
     await Promise.all(promises)
 
     if (needs_migration) {
-      await ext_api.sessions.setTabValue(item.id, `grasshopper`, grasshopper)
+      try {
+        await ext_api.sessions.setTabValue(item.id, `grasshopper`, grasshopper)
+      }
+      catch (err) {
+        App.error(err)
+      }
+
       App.log(`Tab values migrated`)
     }
   }

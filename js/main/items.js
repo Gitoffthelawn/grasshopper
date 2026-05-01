@@ -1631,18 +1631,31 @@ App.start_progressive_fill = () => {
   let fill = App.get_setting(`fill_elements`)
 
   if (fill === `progressive`) {
+    App.progressive_fill_id = (App.progressive_fill_id || 0) + 1
+    let current_id = App.progressive_fill_id
+
     App.progressive_fill_timeout = setTimeout(() => {
-      App.do_progressive_fill()
+      App.do_progressive_fill(current_id)
     }, App.progressive_fill_delay)
   }
 }
 
-App.do_progressive_fill = async () => {
+App.do_progressive_fill = async (fill_id) => {
   let n = 0
 
   for (let item of App.get_items(`tabs`)) {
+    if (App.progressive_fill_id !== fill_id) {
+      return
+    }
+
     if (item.element && (!item.element_ready || !item.session_loaded)) {
-      await App.load_session(item)
+      try {
+        await App.load_session(item)
+      }
+      catch (err) {
+        App.error(err)
+      }
+
       n += 1
 
       if (n >= App.progressive_fill_batch) {
