@@ -1643,7 +1643,7 @@ App.start_progressive_fill = () => {
 App.do_progressive_fill = async (fill_id) => {
   let n = 0
 
-  for (let item of App.get_items(`tabs`)) {
+  for (let [i, item] of App.get_items(`tabs`).entries()) {
     if (App.progressive_fill_id !== fill_id) {
       return
     }
@@ -1657,6 +1657,10 @@ App.do_progressive_fill = async (fill_id) => {
       }
 
       n += 1
+
+      if (App.get_setting(`debug_mode`)) {
+        App.footer_message(`Progress: ${i}`)
+      }
 
       if (n >= App.progressive_fill_batch) {
         await App.sleep(App.progressive_fill_throttle)
