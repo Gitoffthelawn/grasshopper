@@ -262,7 +262,7 @@ App.cycle_modes = async (reverse, reuse_filter = true) => {
   App.show_mode({mode: new_mode, reuse_filter})
 }
 
-App.show_main_mode = (allow_same = true, force = false) => {
+App.show_main_mode = async (allow_same = true, force = false) => {
   let mode
 
   if (App.init_mode) {
@@ -282,13 +282,13 @@ App.show_main_mode = (allow_same = true, force = false) => {
   for (let m of App.persistent_modes) {
     if (mode !== m) {
       if (!App[`${m}_items`].length) {
-        App.do_show_mode({mode: m})
+        await App.do_show_mode({mode: m})
       }
     }
   }
 
   App.check_tab_box_auto(mode)
-  App.do_show_mode({mode, force})
+  await App.do_show_mode({mode, force})
 }
 
 App.getting = (mode, force = false) => {

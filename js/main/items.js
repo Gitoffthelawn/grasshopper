@@ -1229,7 +1229,7 @@ App.get_persistent_items = () => {
 App.clear_show = async () => {
   App.clear_all_items()
   App.rebuild_items()
-  App.show_main_mode()
+  await App.show_main_mode()
   App.start_progressive_fill()
 }
 
@@ -1641,6 +1641,16 @@ App.start_progressive_fill = () => {
 }
 
 App.do_progressive_fill = async (fill_id) => {
+  let items = App.get_items(`tabs`)
+
+  if (!items.length) {
+    App.progressive_fill_timeout = setTimeout(() => {
+      App.do_progressive_fill(fill_id)
+    }, App.progressive_fill_delay)
+
+    return
+  }
+
   let n = 0
 
   for (let [i, item] of App.get_items(`tabs`).entries()) {

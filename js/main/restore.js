@@ -46,7 +46,8 @@ App.restore = () => {
     App.show_main_mode(mode)
     return true
   }
-  else if (App.is_filtered(mode)) {
+
+  if (App.is_filtered(mode)) {
     App.filter_all(mode)
     return true
   }
