@@ -1229,7 +1229,7 @@ App.get_persistent_items = () => {
 App.clear_show = async () => {
   App.clear_all_items()
   App.rebuild_items()
-  await App.show_main_mode()
+  App.show_main_mode()
   App.start_progressive_fill()
 }
 
