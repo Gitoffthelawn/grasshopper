@@ -34,7 +34,7 @@ App.show_photo = async () => {
 
         App.upload_photo(e, file)
       }
-    }
+    },
   })
 }
 
