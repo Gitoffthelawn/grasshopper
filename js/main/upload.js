@@ -22,13 +22,7 @@ App.upload_image = (args = {}) => {
     return
   }
 
-  let input = document.createElement(`input`)
-  input.type = `file`
-  input.accept = `image/*`
-
-  input.onchange = async (e) => {
-    let file = e.target.files[0]
-
+  function read_file(file) {
     if (!file) {
       return
     }
@@ -50,5 +44,18 @@ App.upload_image = (args = {}) => {
     reader.readAsDataURL(file)
   }
 
-  input.click()
+  if (args.file) {
+    read_file(args.file)
+  }
+  else {
+    let input = document.createElement(`input`)
+    input.type = `file`
+    input.accept = `image/*`
+
+    input.onchange = async (e) => {
+      read_file(e.target.files[0])
+    }
+
+    input.click()
+  }
 }

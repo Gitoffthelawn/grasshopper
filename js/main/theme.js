@@ -1580,8 +1580,9 @@ App.paste_background = async () => {
   App.set_background(url)
 }
 
-App.upload_background = () => {
+App.upload_background = (file) => {
   App.upload_image({
+    file,
     key_name: `storedImage`,
     category: `theme`,
     filter: `bg image`,
