@@ -2836,15 +2836,15 @@ App.setup_settings_events = (container, key) => {
     container.ondrop = (e) => {
       let files = e.dataTransfer.files
 
-        if (files.length > 0) {
-          let file = files[0]
+      if (files.length > 0) {
+        let file = files[0]
 
-          if (!file.type.includes(`image/`)) {
-            return
-          }
-
-          App.upload_background(e, file)
+        if (!file.type.includes(`image/`)) {
+          return
         }
+
+        App.upload_background(e, file)
+      }
     }
   }
 }
