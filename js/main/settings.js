@@ -496,7 +496,7 @@ App.start_settings = () => {
 
         let container = DOM.el(`#settings_${key}_container`)
         App.settings_gestures(container)
-        App.setup_settings_drop(container, key)
+        App.setup_settings_events(container, key)
       },
     })
   }
@@ -2831,7 +2831,7 @@ App.enable_settings_mirror = () => {
   App.settings_mirror = true
 }
 
-App.setup_settings_drop = (container, key) => {
+App.setup_settings_events = (container, key) => {
   if (key === `theme`) {
     container.ondrop = (e) => {
       let files = e.dataTransfer.files
@@ -2843,7 +2843,7 @@ App.setup_settings_drop = (container, key) => {
             return
           }
 
-          App.upload_background(file)
+          App.upload_background(e, file)
         }
     }
   }
