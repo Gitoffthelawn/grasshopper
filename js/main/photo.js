@@ -22,11 +22,25 @@ App.show_photo = async () => {
         },
       },
     ],
+    on_drop: (e) => {
+      let files = e.dataTransfer.files
+
+      if (files.length > 0) {
+        let file = files[0]
+
+        if (!file.type.includes(`image/`)) {
+          return
+        }
+
+        App.upload_photo(e, file)
+      }
+    }
   })
 }
 
-App.upload_photo = () => {
+App.upload_photo = (e, file) => {
   App.upload_image({
+    file,
     key_name: `storedPhoto`,
     command: `show_photo`,
     set_function: () => {

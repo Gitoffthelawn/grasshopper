@@ -17,6 +17,7 @@ App.show_textarea = (args = {}) => {
     placeholder: ``,
     format: true,
     fluid: false,
+    on_drop: (e) => {},
   }
 
   App.def_args(def_args, args)
@@ -276,4 +277,8 @@ App.textarea_enter = (e, force = false) => {
 
 App.get_textarea_text = () => {
   return DOM.el(`#textarea_text`).value
+}
+
+App.textarea_drop = (e) => {
+  App.textarea_args.on_drop(e)
 }

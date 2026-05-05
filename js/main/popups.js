@@ -132,6 +132,10 @@ App.start_popups = () => {
           })
         })
       })
+
+      DOM.el(`#popup_textarea_container`).ondrop = (e) => {
+        App.textarea_drop(e)
+      }
     },
     on_dismiss: () => {
       App.on_textarea_dismiss()

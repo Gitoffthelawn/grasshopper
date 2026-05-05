@@ -2847,4 +2847,19 @@ App.setup_settings_events = (container, key) => {
       }
     }
   }
+  else if (key === `lock`) {
+    container.ondrop = (e) => {
+      let files = e.dataTransfer.files
+
+      if (files.length > 0) {
+        let file = files[0]
+
+        if (!file.type.includes(`image/`)) {
+          return
+        }
+
+        App.upload_lock_screen_image(e, file)
+      }
+    }
+  }
 }

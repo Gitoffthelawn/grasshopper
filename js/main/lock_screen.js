@@ -99,8 +99,9 @@ App.unlock_screen = () => {
   App.hide_window()
 }
 
-App.upload_lock_screen_image = () => {
+App.upload_lock_screen_image = (e, file) => {
   App.upload_image({
+    file,
     key_name: `storedLockScreenImage`,
     category: `lock`,
     filter: `lock screen image`,
