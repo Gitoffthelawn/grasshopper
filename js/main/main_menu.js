@@ -54,7 +54,7 @@ App.show_main_menu = (mode) => {
   items.push(App.cmd_item({cmd: `show_toggle_menu`, short: true}))
   items.push(App.cmd_item({cmd: `show_about`, middle: `show_about_credits`, short: true}))
   App.sep(items)
-  items.push(App.cmd_item({cmd: `talk_to_cael`, middle: `set_ai_key`, short: true, middle: `set_ai_key`}))
+  items.push(App.cmd_item({cmd: `talk_to_cael`, middle: `set_ai_key`, short: true}))
   App.sep(items)
   items.push(App.cmd_item({cmd: `toggle_tab_sort`, middle: `sort_tabs`, short: true}))
   items.push(App.cmd_item({cmd: `lock_screen`, middle: `settings_category_lock`, short: true}))
