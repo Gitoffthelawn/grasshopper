@@ -65,41 +65,6 @@ App.user_madprops_settings = () => {
   App.set_setting({setting: `main_title_text_color`, value: `rgba(250, 250, 250, 1)`})
   App.set_setting({setting: `main_title_date`, value: false})
 
-  App.set_setting({setting: `main_title_left_button_menu`, value: [
-    {
-      "cmd": `user_madprops_settings_force`,
-    },
-    {
-      "cmd": `toggle_sidebar`,
-    },
-    {
-      "cmd": `restart_extension`,
-    },
-  ]})
-
-  App.set_setting({setting: `main_title_right_button_menu`, value: [
-    {
-      "cmd": `open_url_github_replace`,
-      "middle": `open_url_github`,
-    },
-    {
-      "cmd": `open_url_youtube_replace`,
-      "middle": `open_url_youtube`,
-    },
-    {
-      "cmd": `open_url_instagram_replace`,
-      "middle": `open_url_instagram`,
-    },
-    {
-      "cmd": `open_url_hackernews_replace`,
-      "middle": `open_url_hackernews`,
-    },
-    {
-      "cmd": `open_url_slashdot_replace`,
-      "middle": `open_url_slashdot`,
-    },
-  ]})
-
   // Favorites
 
   sett = `favorites_menu`
@@ -187,7 +152,7 @@ App.user_madprops_settings = () => {
   cmd = {name: `Words`, url: `http://127.0.0.1:5000/words`, method: `off`, icon: `🥁`, interval: minute * 30, update_title: true, startup: true, arguments: `{"num": 2}`, _id_: `sig_words`}
   App.append_list_setting(sett, cmd)
 
-  cmd = {name: `Now Playing`, url: `http://127.0.0.1:5000/music-np`, method: `off`, icon: `🥁`, interval: 5, update_title: true, _id_: `sig_np`}
+  cmd = {name: `Now Playing`, url: `http://127.0.0.1:5000/music-np`, method: `GET`, icon: `🥁`, interval: 5, update_title: true, _id_: `sig_np`}
   App.append_list_setting(sett, cmd)
 
   cmd = {name: `Music Play`, url: `http://127.0.0.1:5000/music-play`, method: `POST`, icon: `🎸`, _id_: `sig_play`}
@@ -349,6 +314,31 @@ App.user_slay_settings = () => {
   App.set_setting({setting: `background_effect`, value: `rotate_3_blur`})
   App.set_setting({setting: `background_opacity`, value: 70})
   App.set_setting({setting: `window_border_sides`, value: `full`})
+  App.set_setting({setting: `window_border_width`, value: 6})
+  App.set_setting({setting: `window_border_color`, value: `rgba(140, 159, 180, 1)`})
+  App.set_setting({setting: `window_border_glow`, value: `rgba(90, 202, 204, 1)`})
+  App.set_setting({setting: `window_border_glow_speed`, value: 6})
+  App.set_setting({setting: `enable_window_border_glow`, value: true})
+  App.set_setting({setting: `window_border_glow_hover`, value: true})
+  App.set_setting({setting: `footer_colors`, value: true})
+  App.set_setting({setting: `footer_background_color`, value: `rgba(86, 107, 125, 0.65)`})
+  App.set_setting({setting: `smart_icons`, value: true})
+  App.set_setting({setting: `font`, value: `Nova Square`})
+  App.set_setting({setting: `font_size`, value: 17})
+}
+
+App.user_wright_settings = () => {
+  App.user_madprops_settings()
+
+  App.set_setting({setting: `show_main_title`, value: true})
+  App.set_setting({setting: `background_effect`, value: `none`})
+  App.set_setting({setting: `favorites_auto_hide`, value: true})
+  App.set_setting({setting: `item_border`, value: `none`})
+  App.set_setting({setting: `item_icon`, value: `small`})
+  App.set_setting({setting: `multi_bold`, value: true})
+  App.set_setting({setting: `background_image`, value: `Background 7`})
+  App.set_setting({setting: `background_opacity`, value: 80})
+  App.set_setting({setting: `window_border_sides`, value: `right`})
   App.set_setting({setting: `window_border_width`, value: 6})
   App.set_setting({setting: `window_border_color`, value: `rgba(140, 159, 180, 1)`})
   App.set_setting({setting: `window_border_glow`, value: `rgba(90, 202, 204, 1)`})

@@ -141,6 +141,40 @@ App.setup_commands = () => {
     })
   }
 
+  let user_cmds = []
+
+  let users = [
+    `madprops`,
+    `auver`,
+    `pauver`,
+    `fondo`,
+    `slay`,
+    `wright`,
+  ]
+
+  for (let user of users) {
+    user_cmds.push({
+      name: `${pcs}${user}`,
+      cmd: `user_${user}_settings`,
+      action: (args) => {
+        App.user_settings(user)
+      },
+      skip_settings: true,
+      info: `Use the preferred settings for ${user}`,
+    })
+
+    user_cmds.push({
+      name: `${pcs}${user} (Force)`,
+      short_name: `${pcs}${user} (F)`,
+      cmd: `user_${user}_settings_force`,
+      action: (args) => {
+        App.user_settings(user, true)
+      },
+      skip_settings: true,
+      info: `Use the preferred settings for ${user} without confirmation`,
+    })
+  }
+
   let color_filters = []
   let color_changers = []
   let color_removers = []
@@ -5814,102 +5848,8 @@ App.setup_commands = () => {
       },
       info: `Restart the extension (For debugging)`,
     },
-    // Don't add icons to hidden commands
-    {
-      name: `${pcs}madprops`,
-      cmd: `user_madprops_settings`,
-      action: (args) => {
-        App.user_settings(`madprops`)
-      },
-      skip_settings: true,
-      info: `Use the preferred settings for madprops`,
-    },
-    {
-      name: `${pcs}madprops (Force)`,
-      short_name: `${pcs}madprops (F)`,
-      cmd: `user_madprops_settings_force`,
-      action: (args) => {
-        App.user_settings(`madprops`, true)
-      },
-      skip_settings: true,
-      info: `Use the preferred settings for madprops without confirmation`,
-    },
-    {
-      name: `${pcs}auver`,
-      cmd: `user_auver`,
-      action: (args) => {
-        App.user_settings(`auver`)
-      },
-      skip_settings: true,
-      info: `Use the preferred settings for auver`,
-    },
-    {
-      name: `${pcs}auver (Force)`,
-      short_name: `${pcs}auver (F)`,
-      cmd: `user_auver_force`,
-      action: (args) => {
-        App.user_settings(`auver`, true)
-      },
-      skip_settings: true,
-      info: `Use the preferred settings for auver without confirmation`,
-    },
-    {
-      name: `${pcs}pauver`,
-      cmd: `user_pauver`,
-      action: (args) => {
-        App.user_settings(`pauver`)
-      },
-      skip_settings: true,
-      info: `Use the preferred settings for pauver`,
-    },
-    {
-      name: `${pcs}pauver (Force)`,
-      short_name: `${pcs}pauver (F)`,
-      cmd: `user_pauver_force`,
-      action: (args) => {
-        App.user_settings(`pauver`, true)
-      },
-      skip_settings: true,
-      info: `Use the preferred settings for pauver without confirmation`,
-    },
-    {
-      name: `${pcs}fondo`,
-      cmd: `user_fondo`,
-      action: (args) => {
-        App.user_settings(`fondo`)
-      },
-      skip_settings: true,
-      info: `Use the preferred settings for fondo`,
-    },
-    {
-      name: `${pcs}fondo (Force)`,
-      short_name: `${pcs}fondo (F)`,
-      cmd: `user_fondo_force`,
-      action: (args) => {
-        App.user_settings(`fondo`, true)
-      },
-      skip_settings: true,
-      info: `Use the preferred settings for fondo without confirmation`,
-    },
-    {
-      name: `${pcs}slay`,
-      cmd: `user_slay`,
-      action: (args) => {
-        App.user_settings(`slay`)
-      },
-      skip_settings: true,
-      info: `Use the preferred settings for slay`,
-    },
-    {
-      name: `${pcs}slay (Force)`,
-      short_name: `${pcs}slay (F)`,
-      cmd: `user_slay_force`,
-      action: (args) => {
-        App.user_settings(`slay`, true)
-      },
-      skip_settings: true,
-      info: `Use the preferred settings for slay without confirmation`,
-    },
+
+    ...user_cmds,
   ]
 
   let infos = App.commands.map(command => command.info)
