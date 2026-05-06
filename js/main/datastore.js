@@ -44,7 +44,7 @@ App.add_to_datastore = (value, type = `note`) => {
   }
 
   App.stor_save_datastore()
-  App.footer_message(`Datastore: Added`)
+  App.footer_message(`Datastore: Added ${type}`)
   App.action_sound()
 }
 
