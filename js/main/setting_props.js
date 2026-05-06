@@ -4971,7 +4971,6 @@ App.build_settings = () => {
       Use %s where the search terms are supposed to go`,
       version: 1,
     },
-
     filter_search_symbol: {
       name: `Filter Search Symbol`,
       type: `text_smaller`,
@@ -4981,7 +4980,6 @@ App.build_settings = () => {
       info: `Symbol for search filter commands`,
       version: 1,
     },
-
     filter_url_symbol: {
       name: `Filter URL Symbol`,
       type: `text_smaller`,
@@ -4991,7 +4989,6 @@ App.build_settings = () => {
       info: `Symbol for URL filter commands`,
       version: 1,
     },
-
     filter_query_symbol: {
       name: `Filter Query Symbol`,
       type: `text_smaller`,
@@ -5001,25 +4998,32 @@ App.build_settings = () => {
       info: `Symbol for query filter commands`,
       version: 1,
     },
-
     filter_commands_symbol: {
       name: `Filter Commands Symbol`,
       type: `text_smaller`,
-      value: `$`,
+      value: `^`,
       placeholder: `Symbol`,
       no_empty: true,
       info: `Symbol for commands filter`,
       version: 1,
     },
-
     filter_settings_symbol: {
       name: `Filter Settings Symbol`,
       type: `text_smaller`,
       value: `#`,
       placeholder: `Symbol`,
       no_empty: true,
-      separator: true,
       info: `Symbol for settings filter`,
+      version: 1,
+    },
+    filter_variable_symbol: {
+      name: `Filter Variable Symbol`,
+      type: `text_smaller`,
+      value: `$`,
+      placeholder: `Symbol`,
+      no_empty: true,
+      separator: true,
+      info: `Symbol for filter variables like $year`,
       version: 1,
     },
     max_search_items_history: {

@@ -519,14 +519,16 @@ App.do_filter = async (args = {}) => {
 }
 
 App.replace_filter_vars = (value) => {
+  let symbol = App.get_setting(`filter_variable_symbol`)
+  let clean_symbol = App.escape_regex(symbol)
   let date = App.now()
   let day = dateFormat(date, `dddd`).toLowerCase()
   let month = dateFormat(date, `mmmm`).toLowerCase()
   let year = dateFormat(date, `yyyy`)
 
-  value = value.replace(/\$day/g, day)
-  value = value.replace(/\$month/g, month)
-  value = value.replace(/\$year/g, year)
+  value = value.replace(new RegExp(clean_symbol + `day`, `g`), day)
+  value = value.replace(new RegExp(clean_symbol + `month`, `g`), month)
+  value = value.replace(new RegExp(clean_symbol + `year`, `g`), year)
 
   return value
 }
