@@ -66,7 +66,7 @@ App.show_main_menu = (mode) => {
   // }, info: `Enable scripts to improve the experience`})
 
   App.sep(items)
-  items.push(App.cmd_item({cmd: `focus_window_menu`, short: true}))
+  items.push(App.cmd_item({cmd: `focus_window_menu`, middle: `show_windows_menu`, short: true}))
 
   let btn = DOM.el(`#${mode}_main_menu`)
 
