@@ -2171,8 +2171,8 @@ App.build_settings = () => {
       info: `Items for the Stuff Menu`,
       version: 1,
     },
-    datastore_menu: {
-      name: `Datastore Menu`,
+    data_menu: {
+      name: `Data Menu`,
       type: `list`,
       data_group: `normal_menus`,
       value: [
@@ -5781,8 +5781,8 @@ App.build_settings = () => {
       info: `Only show icons in the Stuff Menu`,
       version: 1,
     },
-    compact_datastore_menu: {
-      name: `Compact Datastore Menu`,
+    compact_data_menu: {
+      name: `Compact Data Menu`,
       type: `checkbox`,
       value: false,
       info: `Only show icons in the Datastore Menu`,

@@ -5559,14 +5559,14 @@ App.setup_commands = () => {
       info: `Show a menu with some selected commands`,
     },
     {
-      name: `Datastore Menu`,
+      name: `Data Menu`,
       short_name: `Data`,
-      cmd: `show_datastore_menu`,
+      cmd: `show_data_menu`,
       icon: data_icon,
       action: (args) => {
-        App.show_datastore_menu(args.item, args.e)
+        App.show_data_menu(args.item, args.e)
       },
-      info: `Show a menu with datastore commands`,
+      info: `Show a menu with data commands`,
     },
     {
       name: `Toggle Menu`,

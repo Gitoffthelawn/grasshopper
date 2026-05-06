@@ -49,7 +49,7 @@ App.show_main_menu = (mode) => {
   App.sep(items)
   items.push(App.cmd_item({cmd: `show_signals`, middle: `settings_category_signals`, short: true}))
   items.push(App.cmd_item({cmd: `edit_global_notes`, middle: `clear_global_notes`, short: true}))
-  items.push(App.cmd_item({cmd: `show_datastore_menu`, short: true}))
+  items.push(App.cmd_item({cmd: `show_data_menu`, short: true}))
   items.push(App.cmd_item({cmd: `show_stuff_menu`, short: true}))
   items.push(App.cmd_item({cmd: `show_toggle_menu`, short: true}))
   items.push(App.cmd_item({cmd: `show_about`, middle: `show_about_credits`, short: true}))
