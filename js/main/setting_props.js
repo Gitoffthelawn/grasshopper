@@ -3053,7 +3053,6 @@ App.build_settings = () => {
       value: [],
       data_group: `favorite_menus`,
       info: `The favorites menu for Closed mode`,
-      separator: true,
       version: 1,
     },
     favorites_menu_global: {
@@ -3131,6 +3130,28 @@ App.build_settings = () => {
       wheel_up: `jump_tabs_all_up`,
       wheel_down: `jump_tabs_all_down`,
     }),
+
+    favorites_bar_show_delay: {
+      name: `Favorites Bar Show Delay`,
+      type: `number`,
+      value: 200,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `How many pixels to scroll when scrolling automatically`,
+      version: 1,
+    },
+    favorites_bar_hide_delay: {
+      name: `Favorites Bar Hide Delay`,
+      type: `number`,
+      value: 500,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      separator: true,
+      info: `How many pixels to scroll when scrolling automatically`,
+      version: 1,
+    },
 
     favorites_blur: {
       name: `Favorites Blur`,

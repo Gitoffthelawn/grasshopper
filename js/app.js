@@ -225,12 +225,10 @@ App.keyboard_addlist_ready = false
 App.custom_commands_addlist_ready = false
 
 App.alert_auto_hide_delay = 1500
-App.favorites_bar_show_delay = 100
 App.tab_box_grow_delay = 100
 App.tab_box_ungrow_delay = 500
 App.tab_box_shrink_delay = 100
 App.tab_box_follow_delay = 100
-App.favorites_bar_hide_delay = 500
 App.settings_save_delay = 100
 App.filter_delay_2 = 100
 App.footer_delay = 100

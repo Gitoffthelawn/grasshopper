@@ -1,11 +1,11 @@
 App.setup_favorites = () => {
   App.favorites_bar_show_debouncer = App.create_debouncer((mode) => {
     App.do_favorites_bar_show(mode)
-  }, App.favorites_bar_show_delay)
+  }, App.get_setting(`favorites_bar_show_delay`))
 
   App.favorites_bar_hide_debouncer = App.create_debouncer((mode) => {
     App.do_favorites_bar_hide(mode)
-  }, App.favorites_bar_hide_delay)
+  }, App.get_setting(`favorites_bar_hide_delay`))
 }
 
 App.favorites_bar_enabled = () => {
