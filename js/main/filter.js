@@ -158,7 +158,9 @@ App.do_filter = async (args = {}) => {
     let svalue = value
 
     if (args.force || (svalue !== App[`last_${args.mode}_query`])) {
-      svalue = App.replace_filter_vars(svalue)
+      if (!args.by_what.startsWith(`re`)) {
+        svalue = App.replace_filter_vars(svalue)
+      }
 
       if (quotes_enabled) {
         svalue = App.remove_quotes(svalue)
@@ -541,7 +543,11 @@ App.make_filter_regex = (args = {}) => {
 
   App.def_args(def_args, args)
   let regex
-  args.value = App.replace_filter_vars(args.value)
+
+  if (!args.by_what.startsWith(`re`)) {
+    args.value = App.replace_filter_vars(args.value)
+  }
+
   let ci = App.get_setting(`case_insensitive`)
 
   if (args.by_what.startsWith(`re`)) {
