@@ -162,17 +162,6 @@ App.setup_commands = () => {
       skip_settings: true,
       info: `Use the preferred settings for ${user}`,
     })
-
-    user_cmds.push({
-      name: `${pcs}${user} (Force)`,
-      short_name: `${pcs}${user} (F)`,
-      cmd: `user_${user}_settings_force`,
-      action: (args) => {
-        App.user_settings(user, true)
-      },
-      skip_settings: true,
-      info: `Use the preferred settings for ${user} without confirmation`,
-    })
   }
 
   let color_filters = []
@@ -5568,6 +5557,16 @@ App.setup_commands = () => {
         App.show_stuff_menu(args.item, args.e)
       },
       info: `Show a menu with some selected commands`,
+    },
+    {
+      name: `Datastore Menu`,
+      short_name: `Data`,
+      cmd: `show_datastore_menu`,
+      icon: data_icon,
+      action: (args) => {
+        App.show_datastore_menu(args.item, args.e)
+      },
+      info: `Show a menu with datastore commands`,
     },
     {
       name: `Toggle Menu`,

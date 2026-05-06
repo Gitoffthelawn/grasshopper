@@ -2171,6 +2171,23 @@ App.build_settings = () => {
       info: `Items for the Stuff Menu`,
       version: 1,
     },
+    datastore_menu: {
+      name: `Datastore Menu`,
+      type: `list`,
+      data_group: `normal_menus`,
+      value: [
+        {cmd: `browse_datastore`},
+        {cmd: `datastore_settings`},
+        {cmd: `datastore_urls`},
+        {cmd: `datastore_note`},
+        {cmd: `datastore_theme`},
+        {cmd: `export_datastore`},
+        {cmd: `import_datastore`},
+        {cmd: `clear_datastore`},
+      ],
+      info: `Items for the Datastore Menu`,
+      version: 1,
+    },
     toggle_menu: {
       name: `Toggle Menu`,
       type: `list`,
@@ -5762,6 +5779,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Only show icons in the Stuff Menu`,
+      version: 1,
+    },
+    compact_datastore_menu: {
+      name: `Compact Datastore Menu`,
+      type: `checkbox`,
+      value: false,
+      info: `Only show icons in the Datastore Menu`,
       version: 1,
     },
     compact_toggle_menu: {

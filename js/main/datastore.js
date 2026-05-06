@@ -217,3 +217,17 @@ App.import_datastore = () => {
     App.action_sound()
   })
 }
+
+App.show_datastore_menu = (item, e) => {
+  let items = App.custom_menu_items({name: `datastore_menu`, item})
+  let compact = App.get_setting(`compact_datastore_menu`)
+
+  App.show_context({
+    e,
+    items,
+    title: `Datastore`,
+    title_icon: App.data_icon,
+    title_number: true,
+    compact,
+  })
+}
