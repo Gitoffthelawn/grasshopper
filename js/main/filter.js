@@ -128,7 +128,7 @@ App.do_filter = async (args = {}) => {
   function check_quotes_enabled(val) {
     if (App.get_setting(`special_quotes`)) {
       if (val.includes(`"`)) {
-        if (!by_what.includes(`re`)) {
+        if (!by_what.startsWith(`re`)) {
           if (by_what === `all`) {
             by_what = `title`
           }
@@ -158,7 +158,7 @@ App.do_filter = async (args = {}) => {
     let svalue = value
 
     if (args.force || (svalue !== App[`last_${args.mode}_query`])) {
-      if (!args.by_what.startsWith(`re`)) {
+      if (!by_what.startsWith(`re`)) {
         svalue = App.replace_filter_vars(svalue)
       }
 
